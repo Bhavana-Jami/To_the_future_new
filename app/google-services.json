@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "183813695450",
+    "firebase_url": "https://to-the-future-abe27.firebaseio.com",
+    "project_id": "to-the-future-abe27",
+    "storage_bucket": "to-the-future-abe27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183813695450:android:a2b519642d06b03cc782e3",
+        "android_client_info": {
+          "package_name": "com.example.write_a_letter_to_future"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183813695450-71hjao0k4ghg08498rdtrijn76m3a16s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoeqeXjEFghqOOqspLTb8P2lSlU4dw8gQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183813695450-71hjao0k4ghg08498rdtrijn76m3a16s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
