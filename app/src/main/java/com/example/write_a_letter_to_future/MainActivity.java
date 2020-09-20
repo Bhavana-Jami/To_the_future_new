@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         mailbox=findViewById(R.id.lottieAnimationView);
         sign_in= (SignInButton) findViewById(R.id.signin_btn);
         //SETTING the animations to the views
-        line.setAnimation(bottomAnime);
+       /* line.setAnimation(bottomAnime);
         tag.setAnimation(bottomAnime);
-        mAuth=FirebaseAuth.getInstance();
+        mAuth=FirebaseAuth.getInstance();*/
         //for moving to the dashboard screent after loading the splash screen
        /* new Handler().postDelayed(new Runnable() {
             @Override
