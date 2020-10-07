@@ -10,7 +10,6 @@
         android:id="@+id/lottieAnimationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toTopOf="@+id/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -19,49 +18,9 @@
         app:layout_constraintVertical_bias="0.699"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/maill"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/all_text"
-        android:text="To the future"
-        android:textSize="40sp"
-        android:layout_marginTop="220dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tag_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/tag_text"
-        android:text="You write ! We deliver !"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name"
-        app:layout_constraintVertical_bias="0.120000005" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/signin_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="click"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tag_name"
-        tools:ignore="MissingConstraints"
-        android:background="@drawable/custom_signin_buttom"/>
+        app:lottie_rawRes="@raw/edited_mail"
+        android:layout_gravity="center"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

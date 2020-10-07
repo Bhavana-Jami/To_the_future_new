@@ -2,6 +2,8 @@ package com.example.write_a_letter_to_future;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.media.Image;
@@ -24,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 import static com.google.android.gms.auth.api.signin.GoogleSignInOptions.DEFAULT_SIGN_IN;
 
 public class dashboard extends AppCompatActivity {
@@ -31,6 +35,8 @@ public class dashboard extends AppCompatActivity {
     ImageView user_profile;
     Button user_logout;
     GoogleSignInClient GoogleSignInClient;
+    RecyclerView mRecyclerView;
+    MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +85,14 @@ public class dashboard extends AppCompatActivity {
             }
         });
 
+        //Recycler view and Card view
+        mRecyclerView=(RecyclerView)findViewById(R.id.recycler_view);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        myAdapter=new MyAdapter(this,getMyList());
+        mRecyclerView.setAdapter(myAdapter);
 
     }
     private void signOut(){
@@ -91,5 +105,34 @@ public class dashboard extends AppCompatActivity {
                         finish();
                     }
                 });
+    }
+    //Recycler view and cardview
+    private ArrayList<Model> getMyList(){
+        ArrayList<Model> models=new ArrayList<>();
+        Model m=new Model();
+        m.setMain_line("Write your letter now!");
+        m.setSub_line("We've 0 written for now!");
+        m.setImage(R.drawable.card_pencil);
+        models.add(m);
+
+        m=new Model();
+        m.setMain_line("Write your letter now!");
+        m.setSub_line("We've 0 written for now!");
+        m.setImage(R.drawable.card_pencil);
+        models.add(m);
+
+        m=new Model();
+        m.setMain_line("Write your letter now!");
+        m.setSub_line("We've 0 written for now!");
+        m.setImage(R.drawable.card_pencil);
+        models.add(m);
+
+        m=new Model();
+        m.setMain_line("Write your letter now!");
+        m.setSub_line("We've 0 written for now!");
+        m.setImage(R.drawable.card_pencil);
+        models.add(m);
+
+        return models;
     }
 }
