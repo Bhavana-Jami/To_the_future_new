@@ -2,10 +2,13 @@ package com.example.write_a_letter_to_future;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
@@ -37,6 +41,7 @@ public class dashboard extends AppCompatActivity {
     GoogleSignInClient GoogleSignInClient;
     RecyclerView mRecyclerView;
     MyAdapter myAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +64,7 @@ public class dashboard extends AppCompatActivity {
                 }
             }
         });*/
-        GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions gso=new GoogleSignInOptions.Builder(DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
@@ -69,6 +74,7 @@ public class dashboard extends AppCompatActivity {
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(dashboard.this);
 
+
         if (acct != null) {
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
@@ -77,7 +83,19 @@ public class dashboard extends AppCompatActivity {
             user_name.setText(personName);
             user_mail.setText(personEmail);
             Glide.with(this).load(new String().valueOf(personPhoto)).into(user_profile);//for getting the image..
+
         }
+        //This is for the title for the collapsing toolbar
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+       /* Toolbar mtool_bar=(Toolbar)findViewById(R.id.tool_bar);
+        collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+      //  collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this,R.color.transperent));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(0, 0, 0));*/
+        //collapsingToolbarLayout.setTitleEnabled(false);
+        collapsingToolbarLayout.setTitle(acct.getDisplayName());
+       /* setSupportActionBar(mtool_bar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);*/
+
         user_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +111,7 @@ public class dashboard extends AppCompatActivity {
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         myAdapter=new MyAdapter(this,getMyList());
         mRecyclerView.setAdapter(myAdapter);
+
 
     }
     private void signOut(){
