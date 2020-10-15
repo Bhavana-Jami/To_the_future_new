@@ -9,13 +9,14 @@
         android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorSecondaryVariant"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:contentScrim="@color/colorPrimaryDark"
+            app:contentScrim="@color/colorSecondaryDark"
             app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
             app:title=" "
             >
@@ -24,39 +25,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
             </ImageView>
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center"
-                >
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/profile"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    app:civ_border_width="2dp"
-                    app:civ_border_color="#FF000000"
-                    android:padding="5dp"/>
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"/>
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"/>
+                android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/logout_btn"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"/>
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"
+                        android:padding="5dp"/>
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textColor="@color/textColorPrimary"/>
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textColor="@color/textColorPrimary"/>
+                    <Button
+                        android:id="@+id/logout_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/logout_img"
+                        android:layout_alignParentRight="true"
+                        android:padding="10dp"
+                        android:clickable="true"/>
+                </LinearLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tool_bar"
@@ -68,13 +77,12 @@
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             >
         </androidx.recyclerview.widget.RecyclerView>
     </androidx.core.widget.NestedScrollView>

@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,13 +35,14 @@ import java.util.ArrayList;
 
 import static com.google.android.gms.auth.api.signin.GoogleSignInOptions.DEFAULT_SIGN_IN;
 
-public class dashboard extends AppCompatActivity {
+public class dashboard<mGoogleSignInClient> extends AppCompatActivity {
     TextView user_name,user_mail;
     ImageView user_profile;
     Button user_logout;
     GoogleSignInClient GoogleSignInClient;
     RecyclerView mRecyclerView;
     MyAdapter myAdapter;
+    private Object mGoogleSignInClient;
 
 
     @Override
@@ -87,21 +89,8 @@ public class dashboard extends AppCompatActivity {
         }
         //This is for the title for the collapsing toolbar
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-       /* Toolbar mtool_bar=(Toolbar)findViewById(R.id.tool_bar);
-        collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
-      //  collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this,R.color.transperent));
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(0, 0, 0));*/
-        //collapsingToolbarLayout.setTitleEnabled(false);
-        collapsingToolbarLayout.setTitle(acct.getDisplayName());
-       /* setSupportActionBar(mtool_bar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);*/
-
-        user_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signOut();
-            }
-        });
+        Uri personPhoto = acct.getPhotoUrl();
+        collapsingToolbarLayout.setTitle("Hello "+" "+acct.getDisplayName());
 
         //Recycler view and Card view
         mRecyclerView=(RecyclerView)findViewById(R.id.recycler_view);
@@ -111,47 +100,74 @@ public class dashboard extends AppCompatActivity {
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         myAdapter=new MyAdapter(this,getMyList());
         mRecyclerView.setAdapter(myAdapter);
+        user_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               signOut();
+            }
+        });
 
 
     }
-    private void signOut(){
-        GoogleSignInClient.signOut()
+    /*private void signOut(){
+        Task<Void> successfully_signedout = GoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });s
+    }*/
+    private void signOut() {
+        Task<Void> successfully_signedout = GoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(dashboard.this, "Successfully signedout", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(dashboard.this,MainActivity.class));
+                        startActivity(new Intent(dashboard.this, MainActivity.class));
                         finish();
                     }
                 });
     }
+    /*private void signOut() {
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(dashboard.this, "Successfully signedout", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(dashboard.this, MainActivity.class));
+                        finish();
+                    }
+                });
+    }*/
     //Recycler view and cardview
     private ArrayList<Model> getMyList(){
         ArrayList<Model> models=new ArrayList<>();
         Model m=new Model();
-        m.setMain_line("Write your letter now!");
-        m.setSub_line("We've 0 written for now!");
+        m.setMain_line("Write");
+        m.setSub_line("Hurry up! Don't let your future forget your past!");
         m.setImage(R.drawable.card_pencil);
         models.add(m);
 
         m=new Model();
-        m.setMain_line("Write your letter now!");
-        m.setSub_line("We've 0 written for now!");
-        m.setImage(R.drawable.card_pencil);
+        m.setMain_line("Read");
+        m.setSub_line("Take a sneak peak at other's letters !");
+        m.setImage(R.drawable.card_book);
         models.add(m);
 
         m=new Model();
-        m.setMain_line("Write your letter now!");
-        m.setSub_line("We've 0 written for now!");
-        m.setImage(R.drawable.card_pencil);
+        m.setMain_line("Rate");
+        m.setSub_line("Like our app? Rate it !");
+        m.setImage(R.drawable.card_heart2);
         models.add(m);
 
         m=new Model();
-        m.setMain_line("Write your letter now!");
-        m.setSub_line("We've 0 written for now!");
-        m.setImage(R.drawable.card_pencil);
+        m.setMain_line("About us");
+        m.setSub_line("Know about our project !");
+        m.setImage(R.drawable.card_team);
         models.add(m);
 
         return models;
     }
+
+
 }
