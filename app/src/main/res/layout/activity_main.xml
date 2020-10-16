@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.699"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/edited_mail"
+        app:lottie_rawRes="@raw/mailn"
         android:layout_gravity="center"
         />
 

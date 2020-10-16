@@ -9,10 +9,10 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/colorPrimaryVariant"
+        android:layout_margin="11dp"
+        app:cardBackgroundColor="@color/colorSecondaryVariant"
         app:cardElevation="7dp"
-        app:strokeColor="@color/colorSecondaryVariant"
+        app:strokeColor="@color/colorPrimaryVariant"
         app:strokeWidth="1.2dp">
 
        <RelativeLayout
@@ -46,14 +46,14 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_alignParentRight="true"
+               android:layout_centerInParent="true"
                android:orientation="vertical"
-               android:padding="10dp">
+               android:paddingRight="21dp">
 
                <ImageView
                    android:id="@+id/img"
                    android:layout_width="70dp"
                    android:layout_height="70dp"
-
                    />
            </LinearLayout>
        </RelativeLayout>
