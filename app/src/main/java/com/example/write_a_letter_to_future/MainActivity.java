@@ -40,21 +40,21 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private static int SPLASH_SCREEN=3000;
+    private static int SPLASH_SCREEN=3000;//splash screen variable and the number is the duration for the splash screen to appear 3000 millisecs=3secs
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        //ButterKnife.bind(this);
+        //method for the splash screen ..handler().postdelayed(new Runnable(){})
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent=new Intent(MainActivity.this,sign_in.class);
                 startActivity(intent);
-                finish();
+                finish();//finish() is must ...because it allows the app to close when pressed back key..if not it will come land on the splash screen again
             }
-        },SPLASH_SCREEN);
+        },SPLASH_SCREEN);//parameter for postdelayed method
     }
 }

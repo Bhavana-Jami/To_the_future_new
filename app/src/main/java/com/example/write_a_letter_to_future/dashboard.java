@@ -48,7 +48,7 @@ public class dashboard<mGoogleSignInClient> extends AppCompatActivity {
     ImageButton user_logout;
     GoogleSignInClient GoogleSignInClient;
     RecyclerView mRecyclerView;
-    MyAdapter myAdapter;
+    MyAdapter myAdapter; //created my adapter class in the use of recycler view
     private Object mGoogleSignInClient;
     private static Object Activity;
 
@@ -57,34 +57,24 @@ public class dashboard<mGoogleSignInClient> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        //typecasting the views
         user_name = (TextView) findViewById(R.id.name);
         user_mail = (TextView) findViewById(R.id.email);
         user_profile = (ImageView) findViewById(R.id.profile);
         user_logout = (ImageButton) findViewById(R.id.logout_btn);
-        //for signout
-       /* user_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    // ...
-                    case R.id.user_logout:
-                        signOut();
-                        break;
-                    // ...
-                }
-            }
-        });*/
+
+        //here starts the sign out process
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
         GoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        //***To get the user information
+        //To get the user information
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(dashboard.this);
 
-
+        //if someone already logged in then get the details
         if (acct != null) {
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
@@ -95,41 +85,31 @@ public class dashboard<mGoogleSignInClient> extends AppCompatActivity {
             Glide.with(this).load(new String().valueOf(personPhoto)).into(user_profile);//for getting the image..
 
         }
+
+        //when clicked on the logout image or button change the activity to sign in activity
         user_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signOut();
             }
         });
-        //This is for the title for the collapsing toolbar
+
+        //This is for the title for the collapsing toolbar i.e., setting the user name that we get from the google api
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        Uri personPhoto = acct.getPhotoUrl();
         collapsingToolbarLayout.setTitle("Hello " + " " + acct.getDisplayName());
 
         //Recycler view and Card view
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);//typecasting the recyclerview
+        //creating object for the linearlayoutmanager which allows us to set the orientation etc
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+        //getting the list of items from the my adapter class
         myAdapter = new MyAdapter(this, getMyList());
         mRecyclerView.setAdapter(myAdapter);
-
-        //for status bar
-
-
     }
-    //for status bar
-
-    /*private void signOut(){
-        Task<Void> successfully_signedout = GoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                    }
-                });s
-    }*/
+    //changing activity through signout()
     private void signOut() {
         Task<Void> successfully_signedout = GoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
@@ -141,17 +121,7 @@ public class dashboard<mGoogleSignInClient> extends AppCompatActivity {
                     }
                 });
     }
-    /*private void signOut() {
-        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(dashboard.this, "Successfully signedout", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(dashboard.this, MainActivity.class));
-                        finish();
-                    }
-                });
-    }*/
-    //Recycler view and cardview
+    //Recycler view and cardview.....setting the images and titles to the list we've created
     private ArrayList<Model> getMyList(){
         ArrayList<Model> models=new ArrayList<>();
         Model m=new Model();
@@ -180,6 +150,4 @@ public class dashboard<mGoogleSignInClient> extends AppCompatActivity {
 
         return models;
     }
-
-
 }

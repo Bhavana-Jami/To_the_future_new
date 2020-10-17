@@ -35,23 +35,24 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class sign_in extends AppCompatActivity {
-    private static final int RC_SIGN_IN = 0;
-    SignInButton signin;
-    private GoogleSignInClient mGoogleSignInClient;
+    private static final int RC_SIGN_IN = 0;//variable declared for the google api process and note that all the process is just copying  from firebase website @ google sign in
+    SignInButton signin;//button type is SignInButton special button provided by g api
+    private GoogleSignInClient mGoogleSignInClient; //variable created for the client side
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //For full scree,splash screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_in);
-        //Animations
+        //Animations ----U are currently not using any animation considering the user experience....too many animations wont work and also makes the user wait
        /* topAnime = AnimationUtils.loadAnimation(this, R.anim.top_anime);
         bottomAnime = AnimationUtils.loadAnimation(this, R.anim.bottom_anime);
         line = findViewById(R.id.app_name);
         tag = findViewById(R.id.tag_name);
         mailbox = findViewById(R.id.lottieAnimationView);*/
 
-        //****Here starts our Google sign in button code
+        //****Here starts our Google sign in button code ,you just followed the firebase docs to do this
         signin = (SignInButton) findViewById(R.id.signin_btn);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -60,25 +61,21 @@ public class sign_in extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        //when button clicked ...no.of mail acs logged in your mobile appears
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.signin_btn:
                         signIn();
-                        break;
-                    // ...
-                }
             }
         });
 
     }
-
+    //the sign in method calls the google activity i.e., the activity that shows up when we click on sign in #all logged mail acs
     private void signIn(){
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-
+    //when selected the mail ac then let the user login into the app
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -87,13 +84,14 @@ public class sign_in extends AppCompatActivity {
             handleSignInResult(task);
         }
     }
+    //after logging in...move to the dashboard screen..we r gonna write an intent for that
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
             Intent intent=new Intent(sign_in.this,dashboard.class);
             startActivity(intent);
-        } catch (ApiException e) {
+        } catch (ApiException e) {//show error when failed for any reason
             Toast.makeText(this, "Failed to sign in", Toast.LENGTH_SHORT).show();
         }
     }

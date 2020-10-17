@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".dashboard">
+    <!--here starts the collapsible toolbar  layout-->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
@@ -20,17 +21,20 @@
             app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
             app:title=" "
             >
-
+           <!-- this image is for having the  height of the collapsing toolbar-->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
             </ImageView>
+<!--            this linear layout is for the profile vertically and you have a linear layout inside it to keep the arrows horizontally
+-->
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
                     >
+                <!--and the circular imageview is for the circular shaped image u added a dependency for that-->
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/profile"
@@ -44,13 +48,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:textColor="@color/textColorPrimary"/>
+                        android:textColor="@color/textColorPrimary"
+                        android:fontFamily="@font/all_text_inside"/>
                     <TextView
                         android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:textColor="@color/textColorPrimary"/>
+                        android:textColor="@color/textColorPrimary"
+                        android:fontFamily="@font/all_text_inside"/>
                      <ImageButton
                          android:id="@+id/logout_btn"
                          android:layout_width="wrap_content"
@@ -84,8 +90,9 @@
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="20dp"
                             android:layout_marginLeft="15dp"
-                            android:fontFamily="@dr"
-                            android:textColor="@color/textColorPrimary"/>
+                            android:fontFamily="@font/all_text_inside"
+                            android:textColor="@color/textColorPrimary"
+                            />
                     </LinearLayout>
 
 
@@ -105,6 +112,7 @@
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="20dp"
                             android:textColor="@color/textColorPrimary"
+                            android:fontFamily="@font/all_text_inside"
                             />
                         <ImageButton
                             android:layout_width="wrap_content"
@@ -118,7 +126,7 @@
                 </RelativeLayout>
 
             </LinearLayout>
-
+<!--the actual toolbar-->
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tool_bar"
                 android:layout_width="match_parent"
@@ -127,10 +135,13 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+   <!-- this here helps the whole screen i.e., content below the toolbar to scroll-->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <!--this is for containing the cardviews....scrollable-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="wrap_content"

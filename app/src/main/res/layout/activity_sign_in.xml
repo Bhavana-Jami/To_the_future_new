@@ -8,42 +8,34 @@
     android:id="@+id/relative1"
     >
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/feather_logo"/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        >
         <TextView
                 android:id="@+id/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/all_text"
                 android:text="To the future"
-                android:textSize="40sp" />
-
+                android:textSize="40sp"
+                 />
         <TextView
                 android:id="@+id/tag_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/tag_text"
                 android:text="You write ! We deliver !"
                 android:textSize="20sp" />
-
         <com.google.android.gms.common.SignInButton
                 android:id="@+id/signin_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_signin_buttom" />
-
+                android:background="@drawable/custom_signin_buttom"
+                android:layout_marginTop="100dp"
+            />
     </LinearLayout>
-
-
-
-
 </RelativeLayout>
